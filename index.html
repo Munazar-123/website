@@ -3,25 +3,39 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>MINISTRY OF FOREIGN AFFAIRS OF THE KYRGYZ REPUBLIC</title>
 
 <style>
 
+/* =========================
+   BASIC
+========================= */
+
 * {
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
+    width: 100%;
+    max-width: 100%;
     background: white;
     font-family: Arial, sans-serif;
     color: #222;
+    overflow-x: hidden;
 }
 
-/* Main A4 Page */
+
+/* =========================
+   MAIN A4 PAGE
+========================= */
+
 .page {
     width: 210mm;
     min-height: 297mm;
@@ -30,7 +44,11 @@ html, body {
     background: white;
 }
 
-/* Header */
+
+/* =========================
+   HEADER
+========================= */
+
 .header {
     display: flex;
     align-items: center;
@@ -60,14 +78,22 @@ html, body {
     margin-top: 2px;
 }
 
-/* Line */
+
+/* =========================
+   LINE
+========================= */
+
 hr {
     border: 0;
     border-top: 1px solid #999;
     margin: 5px 0 8px;
 }
 
-/* Photo + QR */
+
+/* =========================
+   PHOTO + QR
+========================= */
+
 .photo-qr {
     width: 100%;
     border-collapse: collapse;
@@ -102,7 +128,43 @@ hr {
     object-fit: contain;
 }
 
-/* Information Table */
+
+/* =========================
+   PRINT BUTTON
+========================= */
+
+.print-btn {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+
+    margin: 0;
+    padding: 8px 22px;
+
+    font-size: 15px;
+    cursor: pointer;
+
+    border: 1px solid #888888;
+    border-radius: 4px;
+
+    background: #b0b0b0;
+    color: white;
+
+    z-index: 9999;
+
+    box-shadow: 0 3px 5px rgba(0,0,0,0.25);
+}
+
+.print-btn:active {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+    transform: translateY(2px);
+}
+
+
+/* =========================
+   INFORMATION TABLE
+========================= */
+
 .info {
     width: 100%;
     border-collapse: collapse;
@@ -112,9 +174,14 @@ hr {
 .info td {
     padding: 4px 5px;
     vertical-align: middle;
+
     border-bottom: 1px solid #ddd;
+
     font-size: 10px;
     line-height: 12px;
+
+    overflow-wrap: anywhere;
+    word-break: normal;
 }
 
 .info td:first-child {
@@ -126,16 +193,145 @@ hr {
     width: 52%;
 }
 
-/* Footer */
+
+/* =========================
+   FOOTER
+========================= */
+
 .footer {
     margin-top: 10px;
+
     font-size: 9px;
     line-height: 12px;
+
     color: #666;
+
     text-align: center;
 }
 
-/* Print */
+
+/* =========================
+   MOBILE SCREEN
+========================= */
+
+@media screen and (max-width: 600px) {
+
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .page {
+        width: 100%;
+        min-height: 100vh;
+
+        margin: 0;
+        padding: 12px;
+    }
+
+
+    /* Header */
+
+    .header {
+        width: 100%;
+        gap: 7px;
+        padding: 2px 0 6px;
+    }
+
+    .header img {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+    }
+
+    .header-title {
+        font-size: 9px;
+        line-height: 12px;
+    }
+
+    .header-subtitle {
+        font-size: 7px;
+        margin-top: 2px;
+    }
+
+
+    /* Line */
+
+    hr {
+        margin: 5px 0 8px;
+    }
+
+
+    /* Photo + QR */
+
+    .photo-qr {
+        width: 100%;
+    }
+
+    .photo {
+        width: 80px;
+        height: 105px;
+    }
+
+    .qr {
+        width: 80px;
+        height: 80px;
+    }
+
+
+    /* Information */
+
+    .info {
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    .info td {
+        padding: 5px 4px;
+
+        font-size: 9px;
+        line-height: 11px;
+
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    .info td:first-child {
+        width: 48%;
+    }
+
+    .info td:last-child {
+        width: 52%;
+    }
+
+
+    /* Footer */
+
+    .footer {
+        margin-top: 10px;
+
+        font-size: 8px;
+        line-height: 10px;
+    }
+
+
+    /* Print Button */
+
+    .print-btn {
+        top: 8px;
+        left: 8px;
+
+        padding: 7px 18px;
+
+        font-size: 14px;
+    }
+}
+
+
+/* =========================
+   PRINT / A4
+========================= */
+
 @media print {
 
     @page {
@@ -143,20 +339,31 @@ hr {
         margin: 0;
     }
 
-    html, body {
+    html,
+    body {
         width: 210mm;
         height: 297mm;
+
         margin: 0;
         padding: 0;
+
+        overflow: visible;
     }
 
     .page {
         width: 210mm;
         height: 297mm;
         min-height: 297mm;
+
         margin: 0;
+
         padding: 8mm 10mm;
+
         box-shadow: none;
+    }
+
+    .print-btn {
+        display: none !important;
     }
 
     table,
@@ -170,11 +377,28 @@ hr {
 
 </head>
 
+
 <body>
+
+
+<!-- =========================
+     PRINT BUTTON
+========================= -->
+
+<button onclick="window.print()" class="print-btn">
+    Print
+</button>
+
+
+<!-- =========================
+     MAIN PAGE
+========================= -->
 
 <div class="page">
 
+
     <!-- HEADER -->
+
     <div class="header">
 
         <img src="logo.jpeg" alt="Logo">
@@ -182,21 +406,29 @@ hr {
         <div class="header-text">
 
             <div class="header-title">
+
                 КЫРГЫЗ РЕСПУБЛИКАСЫНЫН ТЫШКЫ ИШТЕР МИНИСТРЛИИ<br>
+
                 MINISTRY OF FOREIGN AFFAIRS OF THE KYRGYZ REPUBLIC
+
             </div>
 
             <div class="header-subtitle">
+
                 Бирдиктүү уруксат / Uniform Permit
+
             </div>
 
         </div>
 
     </div>
 
+
     <hr>
 
+
     <!-- PHOTO + QR -->
+
     <table class="photo-qr">
 
         <tr>
@@ -211,6 +443,7 @@ hr {
 
             </td>
 
+
             <td class="qr-cell">
 
                 <img
@@ -223,122 +456,159 @@ hr {
 
         </tr>
 
-<button onclick="window.print()" class="print-btn">
-    Print
-</button>
-
-<style>
-.print-btn {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    margin: 0;
-    padding: 8px 22px;
-    font-size: 15px;
-    cursor: pointer;
-
-    border: 1px solid #888888;
-    border-radius: 4px;
-
-    background: #b0b0b0;
-    color: white;
-    z-index: 9999;
-
-    box-shadow: 0 3px 5px rgba(0,0,0,0.25);
-}
-
-.print-btn:active {
-    box-shadow: 0 1px 2px rgba(0,0,0,0.25);
-    transform: translateY(2px);
-}
-
-@media print {
-    .print-btn {
-        display: none;
-    }
-}
-</style>
     </table>
 
+
     <!-- INFORMATION -->
+
     <table class="info">
+
 
         <tr>
             <td>ТОЛУК АТЫ-ЖӨНҮ/FULL NAME</td>
             <td>SHAMRAIZ IQBAL</td>
         </tr>
 
+
         <tr>
             <td>Туулган күнү/Date of Birth</td>
             <td>22-10-1997</td>
         </tr>
+
 
         <tr>
             <td>Жарандыгы/Citizenship</td>
             <td>Pakistan</td>
         </tr>
 
-        <tr>
-            <td>Жол жүрүү документинин номери/Travel Document Number</td>
-            <td>EX1350431</td>
-        </tr>
 
         <tr>
-            <td>Жол жүрүү документинин түрү/Travel Document Type</td>
-            <td>Ordinary</td>
+            <td>
+                Жол жүрүү документинин номери/Travel Document Number
+            </td>
+
+            <td>
+                EX1350431
+            </td>
         </tr>
 
-        <tr>
-            <td>Берилген күнү/Date of Issue</td>
-            <td>15-05-2026</td>
-        </tr>
 
         <tr>
-            <td>Жарактуулук мөөнөтү/Date of Expiry</td>
-            <td>14-05-2031</td>
+            <td>
+                Жол жүрүү документинин түрү/Travel Document Type
+            </td>
+
+            <td>
+                Ordinary
+            </td>
         </tr>
 
-        <tr>
-            <td>Бирдиктүү уруксаттын жарактуулук мөөнөтү/Validity of Uniform permit</td>
-            <td>21-09-2026 to 20-11-2026</td>
-        </tr>
 
         <tr>
-            <td>Визанын түрү/Visa Type</td>
-            <td>Working Visa</td>
+            <td>
+                Берилген күнү/Date of Issue
+            </td>
+
+            <td>
+                15-05-2026
+            </td>
         </tr>
 
-        <tr>
-            <td>Кирүүлөрдүн саны/Number of Entries</td>
-            <td>Multiple Entry</td>
-        </tr>
 
         <tr>
-            <td>Болуу мөөнөтү/Period of Stay</td>
-            <td>59 days</td>
+            <td>
+                Жарактуулук мөөнөтү/Date of Expiry
+            </td>
+
+            <td>
+                14-05-2031
+            </td>
         </tr>
 
-        <tr>
-            <td>Иш берүүчү / Чакыруучу тарап/Employer / Inviting Party</td>
-            <td>CREDO SEWING</td>
-        </tr>
 
         <tr>
-            <td>Right to Work</td>
-            <td>UNIFORM PERMIT</td>
+            <td>
+                Бирдиктүү уруксаттын жарактуулук мөөнөтү/Validity of Uniform permit
+            </td>
+
+            <td>
+                21-09-2026 to 20-11-2026
+            </td>
         </tr>
+
+
+        <tr>
+            <td>
+                Визанын түрү/Visa Type
+            </td>
+
+            <td>
+                Working Visa
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>
+                Кирүүлөрдүн саны/Number of Entries
+            </td>
+
+            <td>
+                Multiple Entry
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>
+                Болуу мөөнөтү/Period of Stay
+            </td>
+
+            <td>
+                59 days
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>
+                Иш берүүчү / Чакыруучу тарап/Employer / Inviting Party
+            </td>
+
+            <td>
+                CREDO SEWING
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>
+                Right to Work
+            </td>
+
+            <td>
+                UNIFORM PERMIT
+            </td>
+        </tr>
+
 
     </table>
 
+
     <!-- FOOTER -->
+
     <div class="footer">
+
         Бул барак Кыргыз Республикасынын Тышкы иштер министрлиги тарабынан
         күбөлөндүрүлгөн, мамлекеттик орган /
         This page is Ministry of Foreign Affairs Kyrgyz Republic, certified,
         government authority.
+
     </div>
 
+
 </div>
+
 
 </body>
 </html>

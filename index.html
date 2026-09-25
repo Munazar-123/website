@@ -124,7 +124,41 @@
 
 
     <hr>
+<button onclick="window.print()" class="print-btn">
+    Print
+</button>
 
+<style>
+.print-btn {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    margin: 0;
+    padding: 8px 22px;
+    font-size: 15px;
+    cursor: pointer;
+
+    border: 1px solid #888888;
+    border-radius: 4px;
+
+    background: #b0b0b0;
+    color: white;
+    z-index: 9999;
+
+    box-shadow: 0 3px 5px rgba(0,0,0,0.25);
+}
+
+.print-btn:active {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+    transform: translateY(2px);
+}
+
+@media print {
+    .print-btn {
+        display: none;
+    }
+}
+</style>
     <table> 
 
         <tr>
